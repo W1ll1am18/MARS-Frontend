@@ -1,9 +1,6 @@
-import React from 'react'
-import { useState } from 'react'
 import type { ReactNode } from 'react'
-import { CSSTransition } from 'react-transition-group';
+import { Link, useNavigate } from 'react-router-dom';
 import SettingsIcon from '../assets/settings.svg?react';
-import StockIcon from '../assets/stock.svg?react';
 import RocketIcon from '../assets/rocket.svg?react';
 import BulbIcon from '../assets/bulb.svg?react';
 import AnalyseIcon from '../assets/analyse.svg?react';
@@ -13,6 +10,8 @@ import BackIcon from '../assets/back.svg?react'
 import './NavBar.css'
 
 const NavigationBar = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className='nav-bar'>
@@ -22,21 +21,23 @@ const NavigationBar = () => {
           </div>
           <div className='nav-top'>
             <h1 className='nav-title'>MARS</h1>
-              <NavItem propsIcon={<AccountIcon />} propsName={"Profile"}></NavItem>
+              <Link to="/profile"><NavItem propsIcon={<AccountIcon />} propsName={"Profile"}></NavItem></Link>
               <NavItem propsIcon={<RocketIcon />} propsName={"Discover"} propsDropIcon={<DownIcon />}>
-                <DropdownItem propsName="Tickers" propsLink="/" />
+                <DropdownItem propsName="Tickers" propsLink="/tickers" />
                 <DropdownItem propsName="Overview" propsLink="/overview" />
                 <DropdownItem propsName="Ticker Types" propsLink="/types" />
               </NavItem>
               <NavItem propsIcon={<AnalyseIcon />} propsName={"Analyse"} propsDropIcon={<DownIcon />}>
                 <DropdownItem propsName="No tickers selected" propsLink="/" />
               </NavItem>
-              <NavItem propsIcon={<BulbIcon />} propsName={"Recommendation"}></NavItem>
+              <Link to="/recommendation"><NavItem propsIcon={<BulbIcon />} propsName={"Recommendation"}></NavItem></Link>
           </div>
 
           <div className='nav-bottom'>
-            <NavItem propsIcon={<SettingsIcon />} propsName={"Settings"} className="settings-item" />
-            <NavItem propsIcon={<BackIcon />} propsName={"Back"} className="back-item" />
+            <Link to="/settings"><NavItem propsIcon={<SettingsIcon />} propsName={"Settings"} className="settings-item" /></Link>
+            <div onClick={() => navigate(-1)}>
+              <NavItem propsIcon={<BackIcon />} propsName={"Back"} className="back-item" />
+            </div>
           </div>
       </div>
     </div >
@@ -75,7 +76,7 @@ function NavItem({ propsIcon, propsName, propsDropIcon, children, className }: N
 function DropdownItem({ propsName, propsLink }: DropdownItemProps) {
   return (
     <li className='dropdown-item'>
-      <a href={propsLink}>{propsName}</a>
+      <Link to={propsLink}>{propsName}</Link>
     </li>
   )
 }
