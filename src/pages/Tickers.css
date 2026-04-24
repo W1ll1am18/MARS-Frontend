@@ -11,6 +11,11 @@
     --bg-accent: #533232;
     --bg-color: #345d44;
     --button-hover: #1d9e4e;
+    --border-color: #3a3a3a;       /* dividers, card borders, pill borders */
+    --bg-deep: #1e1e1e;            /* darkest bg — used in id pills */
+    --font-muted: #909090;         /* company name, secondary text */
+    --font-subtle: #666666;        /* labels, pill text */
+    --badge-delisted-color: #e05555; /* red for delisted badge */
 }
 
 /* ── LEFT PANEL ── */
@@ -18,7 +23,6 @@
     width: 300px;
     min-width: 260px;
     background: var(--bg);
-    /* border-right: 1px solid #e0e0e0; */
     padding: 24px 20px;
     overflow-y: auto;
     flex-shrink: 0;
@@ -100,7 +104,6 @@
     align-items: center;
     justify-content: space-between;
     padding-top: 18px;
-    /* align with the adjacent input */
 }
 
 .checkbox-group input[type="checkbox"] {
@@ -166,6 +169,22 @@
     justify-content: center;
     color: var(--font-color);
     font-size: 14px;
-    border: 2px dashed #e8e8e8;
+    border: 2px dashed #666;
     border-radius: 10px;
+}
+
+/* Results count label */
+.results-count {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Card grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
 }

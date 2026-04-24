@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import NavigationBar from '../components/NavBar'
 import './Tickers.css'
+import { getTickers } from '../api/TickerService'
+import TickerCard from '../components/TickerCard'
 
-const MARKET_OPTIONS = ['', 'stocks', 'crypto', 'fx', 'otc', 'indices']
+const MARKET_OPTIONS = ['', 'STOCKS', 'CRYPTO', 'FX', 'OTC', 'INDICES']
 const TYPE_OPTIONS = [
   '', 'CS', 'ADRC', 'ADRP', 'ADRR', 'UNIT', 'RIGHT', 'PFD', 'FUND', 'SP',
   'WARRANT', 'INDEX', 'ETF', 'ETN', 'OS', 'GDR', 'OTHER', 'NYRS', 'AGEN',
   'EQLK', 'BOND', 'ADRW', 'BASKET', 'LT',
 ]
-const SORT_OPTIONS = ['ticker', 'name', 'market', 'locale', 'primary_exchange', 'type', 'currency_symbol', 'last_updated_utc']
-const ORDER_OPTIONS = ['asc', 'desc']
+const SORT_OPTIONS = ['TICKER', 'NAME', 'MARKET', 'LOCALE', 'PRIMARY_EXCHANGE', 'TYPE', 'CURRENCY_SYMBOL', 'LAST_UPDATED_UTC']
+const ORDER_OPTIONS = ['ASC', 'DESC']
 
-interface TickerFilters {
+export interface TickerFilters {
   ticker: string
   type: string
   market: string
@@ -29,33 +31,50 @@ const Tickers = () => {
   const [filters, setFilters] = useState<TickerFilters>({
     ticker: '',
     type: '',
-    market: 'stocks',
+    market: 'STOCKS',
     exchange: '',
     cik: '',
     date: '',
     search: '',
     active: true,
-    order: 'asc',
-    sort: 'ticker',
+    order: 'ASC',
+    sort: 'TICKER',
     limit: 100,
   })
+
+  const [results, setResults] = useState<any[]>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (field: keyof TickerFilters, value: string | boolean | number) => {
     setFilters(prev => ({ ...prev, [field]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: trigger API / DB query with filters
-    console.log('Query filters:', filters)
+    setLoading(true)
+    setError(null)
+
+    try {
+      const response = await getTickers(filters)
+      setResults(response.data.results ?? [])
+      console.log(response.data.results);
+    } catch (err) {
+      setError('Failed to fetch tickers. Please try again.')
+      setResults([])
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleReset = () => {
     setFilters({
-      ticker: '', type: '', market: 'stocks', exchange: '',
+      ticker: '', type: '', market: 'STOCKS', exchange: '',
       cik: '', date: '', search: '', active: true,
-      order: 'asc', sort: 'ticker', limit: 100,
+      order: 'ASC', sort: 'TICKER', limit: 100,
     })
+    setResults([])
+    setError(null)
   }
 
   return (
@@ -186,9 +205,42 @@ const Tickers = () => {
 
         {/* RIGHT PANEL */}
         <main className="results-panel">
-          <div className="results-placeholder">
-            <p>Results will appear here</p>
-          </div>
+
+          {loading && (
+            <div className="results-placeholder">
+              <p>Loading...</p>
+            </div>
+          )}
+
+          {!loading && error && (
+            <div className="results-placeholder">
+              <p style={{ color: '#e05555' }}>{error}</p>
+            </div>
+          )}
+
+          {!loading && !error && results.length === 0 && (
+            <div className="results-placeholder">
+              <p>Results will appear here</p>
+            </div>
+          )}
+
+          {!loading && !error && results.length > 0 && (
+            <>
+              <div className="results-count">
+                {results.length} result{results.length !== 1 ? 's' : ''}
+              </div>
+              <div className="results-grid">
+                {results.map(t => (
+                  <TickerCard
+                    key={`${t.ticker}-${t.primary_exchange}`}
+                    data={t}
+                    onClick={() => console.log('Selected:', t.ticker)}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+
         </main>
 
       </div>

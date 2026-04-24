@@ -60,7 +60,6 @@ a {
     top: 0;
     width: 3px;
     height: 100%;
-    background: rgb(203, 203, 203);
 }
 
 .nav-bar:hover::before {
@@ -70,8 +69,8 @@ a {
 
 .show-bar {
     position: absolute;
-    top: 50%;
-    right: -18rem;        
+    top: 55vh;
+    right: -17.7rem;        
     transform: translateY(-30%);
     z-index: -1;
     cursor: pointer;
