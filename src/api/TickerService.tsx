@@ -14,3 +14,7 @@ export async function getTickers(filters: TickerFilters) {
         params: cleanedParams
     });
 }
+
+export async function getTicker(symbol: string) {
+    return await axios.get(`${API_URL}/tickers/${symbol}`); 
+}

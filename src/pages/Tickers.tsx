@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import NavigationBar from '../components/NavBar'
 import './Tickers.css'
 import { getTickers } from '../api/TickerService'
@@ -45,6 +46,7 @@ const Tickers = () => {
   const [results, setResults] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const navigate = useNavigate();
 
   const handleChange = (field: keyof TickerFilters, value: string | boolean | number) => {
     setFilters(prev => ({ ...prev, [field]: value }))
@@ -234,7 +236,7 @@ const Tickers = () => {
                   <TickerCard
                     key={`${t.ticker}-${t.primary_exchange}`}
                     data={t}
-                    onClick={() => console.log('Selected:', t.ticker)}
+                    onClick={() => navigate(`/overview/${t.ticker}`)}
                   />
                 ))}
               </div>
