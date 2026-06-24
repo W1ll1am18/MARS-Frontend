@@ -46,6 +46,7 @@ const Tickers = () => {
   const [results, setResults] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [searched, setSearched] = useState(false)
   const navigate = useNavigate();
 
   const handleChange = (field: keyof TickerFilters, value: string | boolean | number) => {
@@ -56,6 +57,7 @@ const Tickers = () => {
     e.preventDefault()
     setLoading(true)
     setError(null)
+    setSearched(true)
 
     try {
       const response = await getTickers(filters)
@@ -220,9 +222,15 @@ const Tickers = () => {
             </div>
           )}
 
-          {!loading && !error && results.length === 0 && (
+          {!loading && !error && results.length === 0 && !searched && (
             <div className="results-placeholder">
               <p>Results will appear here</p>
+            </div>
+          )}
+
+          {!loading && !error && results.length === 0 && searched && (
+            <div className="results-placeholder">
+              <p>No results found</p>
             </div>
           )}
 
