@@ -1,0 +1,394 @@
+.ov {
+  padding: 1.5rem;
+  margin-left: 20px;
+  color: var(--text-color);
+}
+
+.ov-loading, .ov-error {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.ov-error { color: var(--accent-red); }
+
+.no-symbol { margin-left: 50px; }
+
+/* ── Header ─────────────────────────────────── */
+
+.ov-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ov-header-left h1 {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.ov-header-sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ov-badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  backdrop-filter: var(--glass-blur);
+}
+
+.ov-badge-active {
+  background: var(--accent-green-dim);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green-border);
+}
+
+.ov-badge-muted {
+  background: var(--glass-bg);
+  color: var(--text-color);
+  border: 1px solid var(--glass-border);
+}
+
+.ov-muted {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.ov-header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ov-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-color);
+  padding: 6px 16px;
+  border-radius: var(--border-radius);
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  backdrop-filter: var(--glass-blur);
+  transition: background var(--speed), border-color var(--speed), box-shadow var(--speed);
+  box-shadow: var(--glass-shadow);
+}
+
+.ov-btn:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+/* ── Stat cards ──────────────────────────────── */
+
+.ov-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.ov-stat-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  backdrop-filter: var(--glass-blur-strong);
+  box-shadow: var(--glass-shadow);
+  transition: border-color var(--speed), transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top-edge highlight — core of the glass look */
+.ov-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+}
+
+.ov-stat-card:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.ov-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+}
+
+.ov-stat-value {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.ov-stat-range { font-size: 15px; }
+
+.ov-stat-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ── Main grid (chart + company info) ────────── */
+
+.ov-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ov-chart-card,
+.ov-info-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  backdrop-filter: var(--glass-blur-strong);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.ov-chart-card::before,
+.ov-info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+}
+
+.ov-chart-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+}
+
+.ov-chart-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+/* ── Section titles ──────────────────────────── */
+
+.ov-section-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ov-section-title::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: var(--accent-green);
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--accent-green-dim);
+}
+
+.ov-section-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: -8px;
+  margin-bottom: 4px;
+}
+
+/* ── Info rows (company info panel) ─────────── */
+
+.ov-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ov-info-row:last-child { border-bottom: none; }
+
+.ov-info-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.ov-info-value {
+  font-size: 13px;
+  color: var(--text-color);
+  font-weight: 500;
+  max-width: 60%;
+  text-align: right;
+  word-break: break-all;
+}
+
+/* ── Metrics grid ────────────────────────────── */
+
+.ov-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ov-metrics-section {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  backdrop-filter: var(--glass-blur-strong);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.ov-metrics-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+}
+
+.ov-metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.5s, margin 0.5s, padding 0.5s;
+  border-radius: 0;
+}
+
+.ov-metric-row:last-child { border-bottom: none; }
+
+.ov-metric-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+  padding-left: 8px;
+  padding-right: 8px;
+  margin: 0 -1rem;
+  border-radius: 4px;
+}
+
+.ov-metric-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.ov-metric-value {
+  font-size: 13px;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+/* ── Positive / negative ─────────────────────── */
+
+.pos { color: var(--accent-green); }
+.neg { color: var(--accent-red); }
+
+/* ── Bottom row (about + contact) ────────────── */
+
+.ov-bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ov-desc-card,
+.ov-contact-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  backdrop-filter: var(--glass-blur-strong);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.ov-desc-card::before,
+.ov-contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+}
+
+.ov-desc-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.ov-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.ov-contact-row:last-child { border-bottom: none; }
+
+.ov-contact-row a {
+  color: var(--accent-green);
+  text-decoration: none;
+  transition: opacity var(--speed);
+}
+
+.ov-contact-row a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ── Responsive ──────────────────────────────── */
+
+@media (max-width: 900px) {
+  .ov-stat-row     { grid-template-columns: repeat(2, 1fr); }
+  .ov-main-grid    { grid-template-columns: 1fr; }
+  .ov-metrics-grid { grid-template-columns: 1fr; }
+  .ov-bottom-row   { grid-template-columns: 1fr; }
+}

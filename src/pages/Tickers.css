@@ -1,0 +1,190 @@
+.tickers-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    margin-left: 20px;
+
+    --bg: #363636;
+    --bg-results: #242424;
+    --font-color: #e0e0e0;
+    --input-bg: #565656;
+    --bg-accent: #533232;
+    --bg-color: #345d44;
+    --button-hover: #1d9e4e;
+    --border-color: #3a3a3a;       /* dividers, card borders, pill borders */
+    --bg-deep: #1e1e1e;            /* darkest bg — used in id pills */
+    --font-muted: #909090;         /* company name, secondary text */
+    --font-subtle: #666666;        /* labels, pill text */
+    --badge-delisted-color: #e05555; /* red for delisted badge */
+}
+
+/* ── LEFT PANEL ── */
+.filters-panel {
+    width: 300px;
+    min-width: 260px;
+    background: var(--bg);
+    padding: 24px 20px;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.panel-title {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0 0 20px;
+    color: var(--font-color);
+}
+
+.filters-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.field-group label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--font-color);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.field-group input[type="text"],
+.field-group input[type="date"],
+.field-group input[type="number"],
+.field-group select {
+    padding: 8px 10px;
+    border: 1px solid var(--bg);
+    border-radius: 6px;
+    font-size: 13px;
+    background: var(--input-bg);
+    color: var(--font-color);
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.field-group input:focus,
+.field-group select:focus {
+    border-color: #4a90e2;
+}
+
+/* Side-by-side fields */
+.field-row {
+    display: flex;
+    gap: 10px;
+}
+
+.field-group.half {
+    flex: 1;
+}
+
+.field-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.field-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+.field-group input[type="date"] {
+    color-scheme: dark;
+}
+
+/* Checkbox row */
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--button-hover);
+}
+
+/* Buttons */
+.button-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.btn-primary {
+    flex: 1;
+    padding: 9px;
+    background: var(--bg-color);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.btn-primary:hover {
+    background: var(--button-hover);
+}
+
+.btn-secondary {
+    flex: 1;
+    padding: 9px;
+    background: var(--input-bg);
+    color: var(--font-color);
+    border: 1px solid var(--bg);
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.btn-secondary:hover {
+    background: var(--bg-accent);
+}
+
+/* ── RIGHT PANEL ── */
+.results-panel {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+    background: var(--bg-results);
+}
+
+.results-placeholder {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--font-color);
+    font-size: 14px;
+    border: 2px dashed #666;
+    border-radius: 10px;
+}
+
+/* Results count label */
+.results-count {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Card grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+}

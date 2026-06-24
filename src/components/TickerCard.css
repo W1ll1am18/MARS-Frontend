@@ -1,0 +1,129 @@
+.ticker-card {
+  background: #2e2e2e;
+  border: 1px solid #3a3a3a;
+  border-radius: 10px;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  user-select: none;
+}
+
+.ticker-card:hover {
+  border-color: var(--button-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* Header — symbol + active badge */
+.tc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.tc-symbol {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--font-color);
+  letter-spacing: 0.03em;
+}
+
+.tc-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-active {
+  background: rgba(29, 158, 78, 0.18);
+  color: #1d9e4e;
+  border: 1px solid rgba(29, 158, 78, 0.35);
+}
+
+.badge-delisted {
+  background: rgba(180, 60, 60, 0.18);
+  color: #e05555;
+  border: 1px solid rgba(180, 60, 60, 0.35);
+}
+
+/* Company name */
+.tc-name {
+  font-size: 13px;
+  color: #909090;
+  margin-bottom: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Divider */
+.tc-divider {
+  height: 1px;
+  background: #3a3a3a;
+  margin-bottom: 14px;
+}
+
+/* 3-column info grid */
+.tc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px 8px;
+  margin-bottom: 14px;
+}
+
+.tc-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tc-cell-label {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #666;
+}
+
+.tc-cell-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--font-color);
+}
+
+/* Type tag */
+.tc-tag {
+  display: inline-block;
+  background: rgba(52, 93, 68, 0.35);
+  color: var(--button-hover);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid rgba(52, 93, 68, 0.5);
+  width: fit-content;
+}
+
+/* Footer — identifier pills */
+.tc-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid #3a3a3a;
+}
+
+.tc-id-pill {
+  font-size: 10px;
+  font-family: monospace;
+  color: #666;
+  background: #1e1e1e;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  padding: 3px 8px;
+  letter-spacing: 0.03em;
+}
