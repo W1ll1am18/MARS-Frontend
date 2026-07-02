@@ -31,7 +31,7 @@ export interface TickerFilters {
 const Tickers = () => {
   const [filters, setFilters] = useState<TickerFilters>({
     ticker: '',
-    type: '',
+    type: 'CS',
     market: 'STOCKS',
     exchange: '',
     cik: '',

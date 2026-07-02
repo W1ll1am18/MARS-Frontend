@@ -24,11 +24,9 @@ const NavigationBar = () => {
               <Link to="/profile"><NavItem propsIcon={<AccountIcon />} propsName={"Profile"}></NavItem></Link>
               <NavItem propsIcon={<RocketIcon />} propsName={"Discover"} propsDropIcon={<DownIcon />}>
                 <DropdownItem propsName="Tickers" propsLink="/tickers" />
-                <DropdownItem propsName="Overview" propsLink="/overview" />
-                <DropdownItem propsName="Ticker Types" propsLink="/types" />
               </NavItem>
               <NavItem propsIcon={<AnalyseIcon />} propsName={"Analyse"} propsDropIcon={<DownIcon />}>
-                <DropdownItem propsName="No tickers selected" propsLink="/" />
+                <DropdownItem propsName="Overview" propsLink="/overview" />
               </NavItem>
               <Link to="/recommendation"><NavItem propsIcon={<BulbIcon />} propsName={"Recommendation"}></NavItem></Link>
           </div>
