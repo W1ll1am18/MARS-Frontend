@@ -7,6 +7,10 @@ import AnalyseIcon from '../assets/analyse.svg?react';
 import AccountIcon from '../assets/account.svg?react';
 import DownIcon from '../assets/arrowDown.svg?react'
 import BackIcon from '../assets/back.svg?react'
+import ModelIcon from '../assets/model.svg?react'
+import GlossaryIcon from '../assets/glossary.svg?react'
+import DevIcon from '../assets/dev.svg?react'
+
 import './NavBar.css'
 import { tickerLRUCache } from '../App';
 
@@ -69,9 +73,9 @@ const NavigationBar = () => {
           </div>
 
           <div className='nav-bottom'>
-            <Link to="/model"><NavItem propsIcon={<SettingsIcon />} propsName={"Model"} /></Link>
-            <Link to="/glossary"><NavItem propsIcon={<SettingsIcon />} propsName={"Glossary"} /></Link>
-            <Link to="/dev"><NavItem propsIcon={<SettingsIcon />} propsName={"Dev Notes"} /></Link>
+            <Link to="/model"><NavItem propsIcon={<ModelIcon/>} propsName={"Model"} /></Link>
+            <Link to="/glossary"><NavItem propsIcon={<GlossaryIcon />} propsName={"Glossary"} /></Link>
+            <Link to="/dev"><NavItem propsIcon={<DevIcon />} propsName={"Developer Notes"} /></Link>
             {/* <Link to="/settings"><NavItem propsIcon={<SettingsIcon />} propsName={"Settings"} className="settings-item" /></Link> */}
             <div onClick={() => navigate(-1)}>
               <NavItem propsIcon={<BackIcon />} propsName={"Back"} className="back-item" />

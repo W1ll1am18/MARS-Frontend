@@ -8,18 +8,10 @@
     --border: 1px solid #474a4d;
     --border-radius: 8px;
     --speed: 500ms;
-
-    /* ── Hover gradients ──────────────────────────
-       Separate variables from the solid --bg-* colors above,
-       so hover styling can be swapped back at any time by either:
-         a) reverting the "background:" declarations below to
-            "background-color: var(--bg-color)" etc, or
-         b) simply redefining these variables back to a flat color,
-            e.g. --hover-gradient: var(--bg-color);
-    */
-    --hover-gradient: linear-gradient(120deg, #3f8a5a 0%, #5fd694 100%);
+    
+    --hover-gradient: linear-gradient(120deg, #3f8a5a 0%, #379e65 100%);    
     --hover-gradient-settings: linear-gradient(120deg, #5c5c5c 0%, #838383 100%);
-    --hover-gradient-accent: linear-gradient(120deg, #6b3f3f 0%, #b25858 100%);
+    --hover-gradient-accent: linear-gradient(120deg, #6b3f3f 0%, #9f4747 100%);
 }
 
 ul {
