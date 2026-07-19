@@ -1,0 +1,287 @@
+.glossary-page {
+  padding: 1.5rem;
+  margin-left: 20px;
+  max-width: auto;
+  color: var(--text-color);
+}
+
+.glossary-header h1 {
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  padding: 0rem 1.5rem;
+  letter-spacing: -0.3px;
+}
+
+/* ── Category sections ────────────────────────── */
+
+.glossary-section {
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.glossary-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+}
+
+.glossary-section-title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.glossary-section-title::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: var(--accent-green);
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--accent-green-dim);
+}
+
+.glossary-intro {
+  font-size: 17px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  font-style: italic;
+  margin: 0.5rem 0 1rem 0;
+}
+
+/* ── Individual terms ─────────────────────────── */
+
+.glossary-term {
+  padding: 1.1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glossary-term:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.glossary-term-title {
+  position: relative;
+  padding-left: 16px;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 10px 0;
+}
+
+.glossary-term-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 5px var(--accent-green-dim);
+}
+
+.glossary-term p {
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 0.85rem;
+}
+
+.glossary-term p:last-child {
+  margin-bottom: 0;
+}
+
+.glossary-term strong {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+/* ── Bulleted lists ────────────────────────────── */
+
+.glossary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.85rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.glossary-list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.glossary-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 5px var(--accent-green-dim);
+}
+
+.glossary-list li strong {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+/* ── Formula callouts ─────────────────────────── */
+
+.glossary-formula {
+  display: inline-block;
+  background: var(--accent-green-dim);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green-border);
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 15px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  margin: 0.4rem 0 0.9rem 0;
+}
+
+/* ── Comparison table (3-column) ──────────────── */
+
+.glossary-table {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin: 0.75rem 0 1rem 0;
+}
+
+.glossary-table-head-3,
+.glossary-table-row-3 {
+  display: grid;
+  grid-template-columns: 170px 1fr 1fr;
+  gap: 16px;
+}
+
+.glossary-table-head-3 {
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+}
+
+.glossary-table-row-3 {
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background var(--speed);
+}
+
+.glossary-table-row-3:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.glossary-table-feature {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.glossary-table-read {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── Citation superscripts ─────────────────────── */
+
+.glossary-cite {
+  margin-left: 4px;
+  font-size: 12px;
+}
+
+.glossary-cite a {
+  color: var(--accent-green);
+  text-decoration: none;
+}
+
+.glossary-cite a:hover {
+  text-decoration: underline;
+}
+
+/* ── References section ───────────────────────── */
+
+.glossary-references p {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  padding-left: 28px;
+  text-indent: -28px;
+  scroll-margin-top: 24px;
+}
+
+.glossary-references p:last-child {
+  margin-bottom: 0;
+}
+
+.glossary-references .ref-num {
+  display: inline-block;
+  width: 28px;
+  color: var(--text-muted);
+}
+
+.glossary-references a {
+  color: var(--accent-green);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.glossary-references a:hover {
+  text-decoration: underline;
+}
+
+/* ── Source link ───────────────────────────────── */
+
+.glossary-source {
+  font-size: 15px !important;
+  color: var(--text-dim) !important;
+  margin-top: 0.5rem !important;
+}
+
+.glossary-source a {
+  color: var(--accent-green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-green-border);
+  transition: opacity var(--speed);
+}
+
+.glossary-source a:hover {
+  opacity: 0.8;
+}
+
+/* ── Responsive ──────────────────────────────── */
+
+@media (max-width: 700px) {
+  .glossary-table-head-3,
+  .glossary-table-row-3 {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

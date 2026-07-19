@@ -1,7 +1,12 @@
+import { useEffect } from 'react';
 import NavigationBar from '../components/NavBar'
 import './Model.css'
 
 const Model = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <NavigationBar />
@@ -58,12 +63,12 @@ const Model = () => {
           <div className="model-table">
             <div className="model-table-head">
               <span>Feature</span>
-              <span>Plain-language read</span>
+              <span>Simple Definition</span>
             </div>
             {[
               ['Rate of Change (RoC)', "How much has the price moved, in percentage terms, over the last n days?"],
-              ['Simple Moving Average (SMA)', 'The plain average price over n days — a smoothed-out sense of the recent trend.'],
-              ['Exponential Moving Average (EMA)', 'Like SMA, but weights recent days more heavily — reacts faster to new movements.'],
+              ['Simple Moving Average (SMA)', 'The plain average price over n days, a smoothed-out sense of the recent trend.'],
+              ['Exponential Moving Average (EMA)', 'Like SMA, but weights recent days more heavily, reacts faster to new movements.'],
               ['MACD', 'Compares a fast and slow moving average to flag when momentum is shifting.'],
               ['RSI', 'A 0–100 score of whether a stock looks "overbought" or "oversold" lately.'],
               ['Average True Range (ATR)', 'How volatile has this stock been recently? This is also what sizes the barriers themselves.'],
@@ -156,6 +161,9 @@ const Model = () => {
           </p>
           <p>
             In plain terms: the model is clearly picking up something meaningfully better than a coin flip but it's a weak signal, not a reliable forecast. Given that predicting stock direction with any real edge is one of the more famously difficult problems in quantitative finance, going from "no measurable signal at all" (the result of earlier next-day prediction attempts) to "weak but real signal" is a genuine improvement however just not one that should be mistaken for a trading strategy on its own.
+          </p>
+          <p>
+            In the future I do plan on implementing more models across a larger set of industries and horizons. Thanks for reading!
           </p>
         </div>
 

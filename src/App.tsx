@@ -9,6 +9,10 @@ import NotFoundPage from './pages/NotFoundPage';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import Model from './pages/Model';
+import Glossary from './pages/Glossary';
+import { TickerLRUCache } from './components/TickerLRUCache';
+
+export const tickerLRUCache = new TickerLRUCache(10);
 
 function App() {
   return (
@@ -22,6 +26,7 @@ function App() {
         <Route path='/recommendation' element={<Recommendation/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/model' element={<Model/>}/>
+        <Route path='/glossary' element={<Glossary/>}/>
         <Route path='/settings' element={<Settings/>}/>
         <Route path="*" element={<NotFoundPage />} /> {/* 404 page */}
       </Routes>

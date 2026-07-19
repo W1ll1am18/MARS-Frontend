@@ -6,6 +6,7 @@ import './Overview.css'
 import { getPrices } from '../api/PriceService'
 import PriceChart, { type OHLCVBar } from '../components/PriceChart'
 import { getPrediction } from '../api/MarsService'
+import { tickerLRUCache } from '../App'
 
 interface TickerOverviewData {
   // ── Core ticker fields (MASSIVE) ──────────────────
@@ -141,6 +142,11 @@ const TickerOverview = () => {
   const [bars, setBars] = useState<OHLCVBar[]>([])
   const [barsLoading, setBarsLoading] = useState(true)
   const [horizon, setHorizon] = useState(10)
+
+  useEffect(() => {
+    if (!symbol || !data) return
+    tickerLRUCache.put(symbol, symbol);
+  }, [symbol, data])
 
   useEffect(() => {
     if (!symbol) return
@@ -419,7 +425,6 @@ const TickerOverview = () => {
           <div className="ov-metrics-section">
             <div className="ov-section-title">Valuation</div>
             {([
-              ['Forward P/E', fmt(data.forwardPE)],
               ['Price / Book', fmt(data.priceToBook)],
               ['EV / EBITDA (TTM)', fmt(data.evEbitdaTTM)],
               ['EV / Free Cash Flow', fmt(data.evFreeCashFlow)],
