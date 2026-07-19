@@ -30,6 +30,7 @@ html, body {
   --accent-green-dim: rgba(68, 222, 44, 0.15);
   --accent-green-border: rgba(68, 222, 44, 0.27);
   --accent-red: #de2c2c;
+  --accent-yellow: rgb(201, 179, 72); 
   --accent-red-dim: rgba(222, 44, 44, 0.15);
 
   /* Text hierarchy */
@@ -37,6 +38,6 @@ html, body {
   --text-dim: rgba(218, 220, 225, 0.3);
 
   /* Stat card accent bar colours */
-  --glass-shadow: 0 4px 24px rgba(74, 74, 74, 0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+  --glass-shadow: 0 4px 24px rgba(50, 50, 50, 0.35), inset 0 1px 0 rgba(255,255,255,0.06);
   --glass-shadow-hover: 0 8px 32px rgba(83, 83, 83, 0.45), inset 0 1px 0 rgba(255,255,255,0.1);
 }

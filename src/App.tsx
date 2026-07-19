@@ -8,6 +8,7 @@ import Recommendation from './pages/Recommendation';
 import NotFoundPage from './pages/NotFoundPage';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
+import Model from './pages/Model';
 
 function App() {
   return (
@@ -17,9 +18,10 @@ function App() {
         <Route path='/MARS' element={<Home />} />
         <Route path='/tickers' element={<Tickers/>}/>
         <Route path='/overview/:symbol?' element={<Overview/>}/>
-        <Route path='/analyse/:id' element={<Analyse/>}/> {/*Variable path*/}
+        <Route path='/analyse/:id' element={<Analyse/>}/>
         <Route path='/recommendation' element={<Recommendation/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/model' element={<Model/>}/>
         <Route path='/settings' element={<Settings/>}/>
         <Route path="*" element={<NotFoundPage />} /> {/* 404 page */}
       </Routes>
