@@ -370,7 +370,6 @@ const TickerOverview = () => {
           <div className="ov-desc-card">
             <p className="ov-desc-text">
               Detailed financial analysis is currently available for common stocks only.
-              {data.type === 'ETF' && ' ETF metrics require a premium data subscription from MASSIVE (which costs a lot) :('}
             </p>
           </div>
         </div>

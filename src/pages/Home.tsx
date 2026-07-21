@@ -5,7 +5,6 @@ import { Center, Environment, OrbitControls } from '@react-three/drei'
 import Mars from '../assets/Mars' //How to fix
 // import space from '../assets/space.mp4'
 import './Home.css'
-import NavBar from '../components/NavBar'
 
 //rafce
 const Home = () => {
@@ -15,7 +14,6 @@ const Home = () => {
   return (
     <>
       <div className='screen-layout'>
-        <NavBar />
         <div className='home-container'>
           {/* <video src={space} autoPlay loop muted/> */}
           <div className='title'>

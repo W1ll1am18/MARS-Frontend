@@ -1,0 +1,50 @@
+.dev-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.dev-message-box {
+    position: relative;
+    width: min(420px, 90vw);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: var(--border);
+    background: rgba(36, 36, 36, 0.75);
+    backdrop-filter: blur(16px);
+    color: var(--text-color);
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.dev-message-box h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.4rem;
+}
+
+.dev-message-box p {
+    margin: 0, 0, 20px, 0;
+    line-height: 1.5;
+    color: color-mix(in srgb, var(--text-color) 85%, transparent);
+}
+
+.dev-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.dev-close:hover {
+    opacity: 0.7;
+}
