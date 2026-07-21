@@ -14,7 +14,7 @@ import { TickerLRUCache } from './components/TickerLRUCache';
 import { SavedTickers } from './components/SavedTickers';
 import Layout from './Layout';
 
-export const tickerLRUCache = new TickerLRUCache(10);
+export const tickerLRUCache = new TickerLRUCache(5);
 export const savedTickers = new SavedTickers();
 
 function App() {

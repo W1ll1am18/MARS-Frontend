@@ -1,4 +1,5 @@
 const STORAGE_KEY = 'dev-message-shown'
+export const DEV_MESSAGE_EVENT = 'show-dev-message'
 
 export function shouldShowDevMessage(): boolean {
   try {
@@ -10,6 +11,11 @@ export function shouldShowDevMessage(): boolean {
   }
 }
 
+export function triggerDevMessage() {
+  window.dispatchEvent(new Event(DEV_MESSAGE_EVENT))
+}
+
+// Test
 // let hasShown = false
 
 // export function shouldShowDevMessage(): boolean {

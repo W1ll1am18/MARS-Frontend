@@ -102,6 +102,7 @@ a {
     display: flex;
     flex-direction: column;
 }
+
 .nav-bottom {
     margin-top: auto; 
     padding-bottom: 1rem;
@@ -146,13 +147,37 @@ a {
 }
 
 .dropdown-list {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     max-height: 0;   
     display: flex;
     flex-direction: column;
     align-items: center; 
     padding: 0;
     transition: max-height 0.6s ease;
+}
+
+.dropdown-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dropdown-list::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--text-color) 30%, transparent);
+    border-radius: 3px;
+}
+
+.dropdown-list::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--text-color) 50%, transparent);
+}
+
+/*Fire fox*/
+.dropdown-list {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--text-color) 30%, transparent) transparent;
 }
 
 .dropdown-item {
@@ -202,7 +227,7 @@ a {
    class below) rather than CSS :hover, so a click-to-close can't be
    immediately overridden by the mouse still hovering the item. */
 .nav-item.open .dropdown-list {
-    max-height: 300px;
+    max-height: 500px;
 }
 
 .nav-item.open .nav-drop {

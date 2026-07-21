@@ -12,6 +12,7 @@ import DevIcon from '../assets/dev.svg?react'
 import './NavBar.css'
 import { tickerLRUCache } from '../App';
 import { savedTickers } from '../App';
+import { triggerDevMessage } from '../utils/devMessageStore';
 
 const NavigationBar = () => {
   const navigate = useNavigate();
@@ -92,7 +93,9 @@ const NavigationBar = () => {
           <div className='nav-bottom'>
             <Link to="/model"><NavItem propsIcon={<ModelIcon/>} propsName={"Model"} /></Link>
             <Link to="/glossary"><NavItem propsIcon={<GlossaryIcon />} propsName={"Glossary"} /></Link>
-            {/* <Link to="/dev"><NavItem propsIcon={<DevIcon />} propsName={"Developer Notes"} /></Link> */}
+            <div onClick={triggerDevMessage}>
+              <NavItem propsIcon={<DevIcon />} propsName={"Developer Note"} />
+            </div>
             <div onClick={() => navigate(-1)}>
               <NavItem propsIcon={<BackIcon />} propsName={"Back"} className="back-item" />
             </div>
