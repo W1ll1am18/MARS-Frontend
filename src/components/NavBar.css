@@ -156,16 +156,22 @@ a {
 }
 
 .dropdown-item {
-    width: 80%;          
-    padding: 10px 0 10px 70px;
+    width: 100%;
+    padding: 0;
     font-size: 1.2rem;
     cursor: pointer;
     transition: background 0.2s ease;
 }
 
+.dropdown-item a {
+    display: block;
+    width: 100%;
+    padding: 10px 0 10px 75px;
+    box-sizing: border-box;
+}
+
 .dropdown-item:hover {
     background: var(--hover-gradient-accent);
-    border-radius: 0.5rem;
 }
 
 .dropdown-empty {
@@ -232,4 +238,15 @@ a {
 
 .settings-item .section:hover {
     background: var(--hover-gradient-settings);
+}
+
+.dropdown-group-label {
+  width: 80%;
+  padding: 6px 0 4px 70px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: color-mix(in srgb, var(--text-color) 55%, transparent);
+  cursor: default;
 }

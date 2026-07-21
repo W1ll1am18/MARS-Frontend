@@ -1,10 +1,8 @@
 import { useState, type ReactNode } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import SettingsIcon from '../assets/settings.svg?react';
 import RocketIcon from '../assets/rocket.svg?react';
 import BulbIcon from '../assets/bulb.svg?react';
 import AnalyseIcon from '../assets/analyse.svg?react';
-import AccountIcon from '../assets/account.svg?react';
 import DownIcon from '../assets/arrowDown.svg?react'
 import BackIcon from '../assets/back.svg?react'
 import ModelIcon from '../assets/model.svg?react'
@@ -13,10 +11,12 @@ import DevIcon from '../assets/dev.svg?react'
 
 import './NavBar.css'
 import { tickerLRUCache } from '../App';
+import { savedTickers } from '../App';
 
 const NavigationBar = () => {
   const navigate = useNavigate();
-  const tickers: string[] = tickerLRUCache.getList()
+  const recentTickers: string[] = tickerLRUCache.getList()
+  const savedTickerList: string[] = savedTickers.getList()
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({})
 
   const openMenu = (key: string) => {
@@ -26,6 +26,9 @@ const NavigationBar = () => {
   const toggleMenu = (key: string) => {
     setOpenMenus(prev => ({ ...prev, [key]: !prev[key] }))
   }
+
+  const hasSaved = savedTickerList.length > 0
+  const hasRecent = recentTickers.length > 0
 
   return (
     <>
@@ -38,7 +41,6 @@ const NavigationBar = () => {
             <Link to="/" className="nav-title-link">
               <h1 className='nav-title'>MARS</h1>
             </Link>
-            {/* <Link to="/profile"><NavItem propsIcon={<AccountIcon />} propsName={"Profile"}></NavItem></Link> */}
             <NavItem
               propsIcon={<RocketIcon />}
               propsName={"Discover"}
@@ -57,15 +59,30 @@ const NavigationBar = () => {
               onOpen={() => openMenu('analyse')}
               onToggle={() => toggleMenu('analyse')}
             >
-              {tickers && tickers.length > 0 ? (
-                tickers.map((ticker) => (
-                  <DropdownItem propsName={ticker} propsLink={`/overview/${ticker}`}/>
-                ))
-              ) : (
+              {!hasSaved && !hasRecent ? (
                 <li className="dropdown-empty">
-                  <p>No recently visited tickers</p>
+                  <p>No recently visited or saved tickers</p>
                   <p>Please choose some in the discovery tab</p>
                 </li>
+              ) : (
+                <>
+                  {hasSaved && (
+                    <>
+                      <li className="dropdown-group-label">Saved</li>
+                      {savedTickerList.map((ticker) => (
+                        <DropdownItem key={`saved-${ticker}`} propsName={ticker} propsLink={`/overview/${ticker}`} />
+                      ))}
+                    </>
+                  )}
+                  {hasRecent && (
+                    <>
+                      <li className="dropdown-group-label">Recently visited</li>
+                      {recentTickers.map((ticker) => (
+                        <DropdownItem key={`recent-${ticker}`} propsName={ticker} propsLink={`/overview/${ticker}`} />
+                      ))}
+                    </>
+                  )}
+                </>
               )}
             </NavItem>
             <Link to="/recommendation"><NavItem propsIcon={<BulbIcon />} propsName={"Recommendation"}></NavItem></Link>
@@ -76,7 +93,6 @@ const NavigationBar = () => {
             <Link to="/model"><NavItem propsIcon={<ModelIcon/>} propsName={"Model"} /></Link>
             <Link to="/glossary"><NavItem propsIcon={<GlossaryIcon />} propsName={"Glossary"} /></Link>
             <Link to="/dev"><NavItem propsIcon={<DevIcon />} propsName={"Developer Notes"} /></Link>
-            {/* <Link to="/settings"><NavItem propsIcon={<SettingsIcon />} propsName={"Settings"} className="settings-item" /></Link> */}
             <div onClick={() => navigate(-1)}>
               <NavItem propsIcon={<BackIcon />} propsName={"Back"} className="back-item" />
             </div>

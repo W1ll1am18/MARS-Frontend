@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Center, Environment, OrbitControls } from '@react-three/drei'
 // @ts-ignore
 import Mars from '../assets/Mars' //How to fix
-import space from '../assets/space.mp4'
+// import space from '../assets/space.mp4'
 import './Home.css'
 import NavBar from '../components/NavBar'
 

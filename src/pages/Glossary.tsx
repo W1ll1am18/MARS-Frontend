@@ -1,5 +1,4 @@
 import { useEffect, type ReactNode } from 'react'
-import NavigationBar from '../components/NavBar'
 import './Glossary.css'
 
 const Term = ({
@@ -44,7 +43,6 @@ const Glossary = () => {
 
   return (
     <>
-      <NavigationBar />
       <div className="glossary-page">
 
         <div className="glossary-header">

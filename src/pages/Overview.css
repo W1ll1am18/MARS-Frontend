@@ -124,11 +124,11 @@
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
 }
 
-.ov-stat-card:hover {
+/* .ov-stat-card:hover {
   border-color: var(--glass-border-hover);
   transform: translateY(-2px);
   box-shadow: var(--glass-shadow-hover);
-}
+} */
 
 .ov-stat-label {
   font-size: 25px;
@@ -492,6 +492,16 @@
 .ov-prob-fill-timeout { background: var(--text-muted); }
 .ov-prob-fill-up { background: var(--accent-green); }
 
+.ov-pred-out {
+  margin-top: 1.25rem;
+  font-size: 16px;
+  color: #e83b3b;
+  background: rgba(232, 59, 59, 0.08);
+  border: 1px solid rgba(232, 59, 59, 0.3);
+  border-radius: var(--border-radius);
+  padding: 10px 12px;
+}
+
 .ov-pred-warning {
   margin-top: 1.25rem;
   font-size: 16px;
@@ -683,6 +693,25 @@
 .ov-contact-row a:hover {
   opacity: 0.8;
   text-decoration: underline;
+}
+
+.ov-btn-icon {
+  width: 2rem;
+  height: 2rem;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.ov-save-btn.active {
+  background: var(--accent-green-dim);
+  border-color: var(--accent-green-border);
+  color: var(--accent-green);
+}
+
+.ov-contact-icon {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
 }
 
 /* ── Responsive ──────────────────────────────── */

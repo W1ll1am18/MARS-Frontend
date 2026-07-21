@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import NavigationBar from '../components/NavBar'
+// import NavigationBar from '../components/NavBar'
 import './Model.css'
 
 const Model = () => {
@@ -9,7 +9,6 @@ const Model = () => {
 
   return (
     <>
-      <NavigationBar />
       <div className="model-page">
 
         <div className="model-header">

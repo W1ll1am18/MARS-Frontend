@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import NavigationBar from '../components/NavBar'
 import { getTicker } from '../api/TickerService'
 import './Overview.css'
 import { getPrices } from '../api/PriceService'
 import PriceChart, { type OHLCVBar } from '../components/PriceChart'
 import { getPrediction } from '../api/MarsService'
 import { tickerLRUCache } from '../App'
+import { savedTickers } from '../App'
+import PinIcon from '../assets/pin.svg'
+import PinnedIcon from '../assets/pinned.svg'
+// import LinkIcon from '../assets/link.svg'
+import PhoneIcon from '../assets/phone.svg'
+import WebsiteLinkIcon from '../assets/websiteLink.svg'
 
 interface TickerOverviewData {
   // ── Core ticker fields (MASSIVE) ──────────────────
@@ -142,11 +147,23 @@ const TickerOverview = () => {
   const [bars, setBars] = useState<OHLCVBar[]>([])
   const [barsLoading, setBarsLoading] = useState(true)
   const [horizon, setHorizon] = useState(10)
+  const [isSaved, setIsSaved] = useState(false)
 
   useEffect(() => {
     if (!symbol || !data) return
     tickerLRUCache.put(symbol, symbol);
   }, [symbol, data])
+
+  // Reflect saved state whenever the ticker changes
+  useEffect(() => {
+    if (!symbol) return
+    setIsSaved(savedTickers.has(symbol))
+  }, [symbol])
+
+  const handleToggleSave = () => {
+    if (!symbol) return
+    setIsSaved(savedTickers.toggle(symbol))
+  }
 
   useEffect(() => {
     if (!symbol) return
@@ -155,7 +172,6 @@ const TickerOverview = () => {
     setBars([])
     setBarsLoading(true)
 
-    // Sequential — ticker must exist before prices are fetched
     getTicker(symbol)
       .then(r => {
         setData(r.data)
@@ -262,18 +278,18 @@ const TickerOverview = () => {
           </div>
 
           {prediction.scope === 'out_of_scope' && (
-            <div className="ov-pred-warning">
-              ⚠ Outside trained scope — prediction may be unreliable
+            <div className="ov-pred-out">
+              Outside trained scope — prediction may be highly unreliable
             </div>
           )}
           {prediction.scope === 'weak_signal' && (
             <div className="ov-pred-warning">
-              ⚠ Weak signal — prediction may be unreliable
+              Weak signal — prediction may be unreliable
             </div>
           )}
           {prediction.scope === 'validated' && (
             <div className="ov-pred-validated">
-              ✓ Within trained scope — signal is real but weak. Treat as one input, not a forecast.
+              Within trained scope — signal is real but weak. Treat as one input, not a forecast.
             </div>
           )}
           {prediction.suitabilityNote && (
@@ -308,9 +324,9 @@ const TickerOverview = () => {
     </div>
   )
 
-  if (!symbol) return <><NavigationBar /><div className="no-symbol">No ticker to analyse. Please select one</div></>
-  if (loading) return <><NavigationBar /><div className="ov-loading">Loading...</div></>
-  if (error) return <><NavigationBar /><div className="ov-error">{error}</div></>
+  if (!symbol) return <><div className="no-symbol">No ticker to analyse. Please select one</div></>
+  if (loading) return <><div className="ov-loading">Loading...</div></>
+  if (error) return <><div className="ov-error">{error}</div></>
   if (!data) return null
   if (data.type && data.type !== 'CS' && data.type !== 'ADRC'
     && data.type !== 'ADRP' && data.type !== 'WARRANT'
@@ -318,7 +334,6 @@ const TickerOverview = () => {
     && data.type !== 'ETN') {
     return (
       <>
-        <NavigationBar />
         <div className="ov">
           <div className="ov-header">
             <div className="ov-header-left">
@@ -327,6 +342,16 @@ const TickerOverview = () => {
                 <span className="ov-badge ov-badge-muted">{data.type}</span>
                 {data.primaryExchange && <span className="ov-badge ov-badge-muted">{data.primaryExchange}</span>}
               </div>
+            </div>
+            <div className="ov-header-actions">
+              <button className="ov-btn ov-save-btn" onClick={handleToggleSave}>
+                <img
+                  src={isSaved ? PinnedIcon : PinIcon}
+                  alt={isSaved ? 'Saved' : 'Save'}
+                  className="ov-btn-icon"
+                />
+                {isSaved ? 'Saved' : 'Save'}
+              </button>
             </div>
           </div>
           <div className="ov-main-grid" style={{ marginBottom: '1.5rem' }}>
@@ -353,7 +378,6 @@ const TickerOverview = () => {
 
   return (
     <>
-      <NavigationBar />
       <div className="ov">
 
         {/* ── Header ──────────────────────────────────── */}
@@ -368,12 +392,20 @@ const TickerOverview = () => {
             </div>
           </div>
           <div className="ov-header-actions">
-            <button className="ov-btn">⭐ Save</button>
-            {data.homepageUrl && (
+            <button className="ov-btn ov-save-btn" onClick={handleToggleSave}>
+              <img
+                src={isSaved ? PinnedIcon : PinIcon}
+                alt={isSaved ? 'Saved' : 'Save'}
+                className="ov-btn-icon"
+              />
+              {isSaved ? 'Saved' : 'Save'}
+            </button>
+            {/* {data.homepageUrl && (
               <a className="ov-btn" href={data.homepageUrl} target="_blank" rel="noreferrer">
-                🔗 Homepage
+                <img src={LinkIcon} alt="" className="ov-btn-icon" />
+                Homepage
               </a>
-            )}
+            )} */}
           </div>
         </div>
 
@@ -507,17 +539,22 @@ const TickerOverview = () => {
           <div className="ov-contact-card">
             <div className="ov-section-title">Contact</div>
             {data.phoneNumber && (
-              <div className="ov-contact-row">📞 {data.phoneNumber}</div>
+              <div className="ov-contact-row">
+                <img src={PhoneIcon} alt="" className="ov-contact-icon" />
+                {data.phoneNumber}
+              </div>
             )}
             {data.homepageUrl && (
               <div className="ov-contact-row">
-                🌐 <a href={data.homepageUrl} target="_blank" rel="noreferrer">
+                <img src={WebsiteLinkIcon} alt="" className="ov-contact-icon" />
+                <a href={data.homepageUrl} target="_blank" rel="noreferrer">
                   {data.homepageUrl.replace(/^https?:\/\//, '')}
                 </a>
               </div>
             )}
           </div>
         </div>
+
 
       </div>
     </>

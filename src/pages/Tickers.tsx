@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import NavigationBar from '../components/NavBar'
+// import NavigationBar from '../components/NavBar'
 import './Tickers.css'
 import { getTickers } from '../api/TickerService'
 import TickerCard from '../components/TickerCard'
@@ -83,8 +83,6 @@ const Tickers = () => {
 
   return (
     <>
-      <NavigationBar />
-
       <div className="tickers-layout">
 
         {/* LEFT PANEL */}
