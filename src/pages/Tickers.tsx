@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// import NavigationBar from '../components/NavBar'
 import './Tickers.css'
 import { getTickers } from '../api/TickerService'
 import TickerCard from '../components/TickerCard'
@@ -61,8 +60,10 @@ const Tickers = () => {
 
     try {
       const response = await getTickers(filters)
-      setResults(response.data.results ?? [])
-      console.log(response.data.results);
+      const data = response?.data?.results
+      // Treat anything that isn't a populated array as "zero results",
+      // not an error — an empty/missing results field is a valid response shape.
+      setResults(Array.isArray(data) ? data : [])
     } catch (err) {
       setError('Failed to fetch tickers. Please try again.')
       setResults([])
@@ -73,23 +74,24 @@ const Tickers = () => {
 
   const handleReset = () => {
     setFilters({
-      ticker: '', type: '', market: 'STOCKS', exchange: '',
+      ticker: '', type: 'CS', market: 'STOCKS', exchange: '',
       cik: '', date: '', search: '', active: true,
       order: 'ASC', sort: 'TICKER', limit: 100,
     })
     setResults([])
     setError(null)
+    setSearched(false)
   }
 
   return (
-    <>
-      <div className="tickers-layout">
+    <div className="tickers-layout">
 
-        {/* LEFT PANEL */}
-        <aside className="filters-panel">
-          <h2 className="panel-title">Search Tickers</h2>
-          <form onSubmit={handleSubmit} className="filters-form">
+      {/* LEFT PANEL */}
+      <aside className="filters-panel">
+        <h2 className="panel-title">Search Tickers</h2>
+        <form onSubmit={handleSubmit} className="filters-form">
 
+          <div className="field-section">
             <div className="field-group">
               <label>Search</label>
               <input
@@ -109,7 +111,9 @@ const Tickers = () => {
                 onChange={e => handleChange('ticker', e.target.value.toUpperCase())}
               />
             </div>
+          </div>
 
+          <div className="field-section">
             <div className="field-group">
               <label>Market</label>
               <select value={filters.market} onChange={e => handleChange('market', e.target.value)}>
@@ -127,7 +131,9 @@ const Tickers = () => {
                 ))}
               </select>
             </div>
+          </div>
 
+          <div className="field-section">
             <div className="field-group">
               <label>Exchange (MIC)</label>
               <input
@@ -147,7 +153,9 @@ const Tickers = () => {
                 onChange={e => handleChange('cik', e.target.value)}
               />
             </div>
+          </div>
 
+          <div className="field-section">
             <div className="field-group">
               <label>Date</label>
               <input
@@ -156,7 +164,9 @@ const Tickers = () => {
                 onChange={e => handleChange('date', e.target.value)}
               />
             </div>
+          </div>
 
+          <div className="field-section">
             <div className="field-row">
               <div className="field-group half">
                 <label>Sort By</label>
@@ -196,63 +206,65 @@ const Tickers = () => {
                 />
               </div>
             </div>
+          </div>
 
-            <div className="button-row">
-              <button type="submit" className="btn-primary">Search</button>
-              <button type="button" className="btn-secondary" onClick={handleReset}>Reset</button>
+          <div className="button-row">
+            <button type="submit" className="btn-primary">Search</button>
+            <button type="button" className="btn-secondary" onClick={handleReset}>Reset</button>
+          </div>
+
+        </form>
+      </aside>
+
+      {/* RIGHT PANEL */}
+      <main className="results-panel">
+
+        {loading && (
+          <div className="results-loading">
+            <div className="results-spinner" />
+            <p className="results-loading-message">Loading...</p>
+            <p className="results-loading-sub">Please give us a moment</p>
+          </div>
+        )}
+
+        {!loading && error && (
+          <div className="results-placeholder">
+            <p style={{ color: '#e05555' }}>{error}</p>
+          </div>
+        )}
+
+        {!loading && !error && results.length === 0 && !searched && (
+          <div className="results-placeholder">
+            <p>Results will appear here</p>
+          </div>
+        )}
+
+        {!loading && !error && results.length === 0 && searched && (
+          <div className="results-placeholder">
+            <p>No results found</p>
+          </div>
+        )}
+
+        {!loading && !error && results.length > 0 && (
+          <>
+            <div className="results-count">
+              {results.length} result{results.length !== 1 ? 's' : ''}
             </div>
-
-          </form>
-        </aside>
-
-        {/* RIGHT PANEL */}
-        <main className="results-panel">
-
-          {loading && (
-            <div className="results-placeholder">
-              <p>Loading...</p>
+            <div className="results-grid">
+              {results.map(t => (
+                <TickerCard
+                  key={`${t.ticker}-${t.primary_exchange}`}
+                  data={t}
+                  onClick={() => navigate(`/overview/${t.ticker}`)}
+                />
+              ))}
             </div>
-          )}
+          </>
+        )}
 
-          {!loading && error && (
-            <div className="results-placeholder">
-              <p style={{ color: '#e05555' }}>{error}</p>
-            </div>
-          )}
+      </main>
 
-          {!loading && !error && results.length === 0 && !searched && (
-            <div className="results-placeholder">
-              <p>Results will appear here</p>
-            </div>
-          )}
-
-          {!loading && !error && results.length === 0 && searched && (
-            <div className="results-placeholder">
-              <p>No results found</p>
-            </div>
-          )}
-
-          {!loading && !error && results.length > 0 && (
-            <>
-              <div className="results-count">
-                {results.length} result{results.length !== 1 ? 's' : ''}
-              </div>
-              <div className="results-grid">
-                {results.map(t => (
-                  <TickerCard
-                    key={`${t.ticker}-${t.primary_exchange}`}
-                    data={t}
-                    onClick={() => navigate(`/overview/${t.ticker}`)}
-                  />
-                ))}
-              </div>
-            </>
-          )}
-
-        </main>
-
-      </div>
-    </>
+    </div>
   )
 }
 

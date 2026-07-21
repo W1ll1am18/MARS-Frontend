@@ -309,13 +309,13 @@ const Glossary = () => {
             <span className="ref-num">[3]</span> W. Kenton, "Beta: Definition, Calculation, and Explanation for Investors," Investopedia, May 30, 2025. <a href="https://www.investopedia.com/terms/b/beta.asp" target="_blank" rel="noreferrer">https://www.investopedia.com/terms/b/beta.asp</a>
           </p>
           <p id="ref-4">
-            <span className="ref-num">[4]</span> J. Fernando, "Price-to-Book (P/B) Ratio: Meaning, Formula, and Example," Investopedia, June 20, 2024. <a href="https://www.investopedia.com/terms/p/price-to-bookratio.asp" target="_blank" rel="noreferrer">https://www.investopedia.com/terms/p/price-to-bookratio.asp</a> (accessed July 19, 2026).
+            <span className="ref-num">[4]</span> J. Fernando, "Price-to-Book (P/B) Ratio: Meaning, Formula, and Example," Investopedia, June 20, 2024. <a href="https://www.investopedia.com/terms/p/price-to-bookratio.asp" target="_blank" rel="noreferrer">https://www.investopedia.com/terms/p/price-to-bookratio.asp</a> 
           </p>
           <p id="ref-5">
-            <span className="ref-num">[5]</span> A. Hayes, "Enterprise Multiple Definition," Investopedia, Apr. 09, 2022. <a href="https://www.investopedia.com/terms/e/ev-ebitda.asp" target="_blank" rel="noreferrer">https://www.investopedia.com/terms/e/ev-ebitda.asp</a> (accessed July 19, 2026).
+            <span className="ref-num">[5]</span> A. Hayes, "Enterprise Multiple Definition," Investopedia, Apr. 09, 2022. <a href="https://www.investopedia.com/terms/e/ev-ebitda.asp" target="_blank" rel="noreferrer">https://www.investopedia.com/terms/e/ev-ebitda.asp</a>
           </p>
           <p id="ref-6">
-            <span className="ref-num">[6]</span> W. Kenton, "Why the Price/Earnings-to-Growth Ratio Matters," Investopedia, Mar. 12, 2024. <a href="https://www.investopedia.com/terms/p/pegratio.asp" target="_blank" rel="noreferrer">https://www.investopedia.com/terms/p/pegratio.asp</a> (accessed July 19, 2026).
+            <span className="ref-num">[6]</span> W. Kenton, "Why the Price/Earnings-to-Growth Ratio Matters," Investopedia, Mar. 12, 2024. <a href="https://www.investopedia.com/terms/p/pegratio.asp" target="_blank" rel="noreferrer">https://www.investopedia.com/terms/p/pegratio.asp</a> 
           </p>
         </div>
 

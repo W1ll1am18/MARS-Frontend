@@ -33,7 +33,7 @@ const NavigationBar = () => {
 
   return (
     <>
-      <div className='nav-bar'>
+      <div className='nav-bar' onMouseLeave={() => setOpenMenus({})}>
         <div className='lists'>
           <div className='show-bar'>
             <svg><BackIcon /></svg>

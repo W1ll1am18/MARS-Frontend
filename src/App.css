@@ -11,7 +11,7 @@ html, body {
 }
 
 :root {
-  /* existing variables... */
+  --link: rgba(64, 173, 209, 0.8);
   
   /* Glass surfaces */
   width: 100%;

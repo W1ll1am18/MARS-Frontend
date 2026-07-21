@@ -46,7 +46,7 @@ const DevMessage = () => {
           a real-world passion project
         </p>
         <p>
-          If you want to give feedback or just message me you can do so through email:
+          If you want to give feedback or contact me you can do so through email:
         </p>
         <p>
           <strong>williamlor.yp@gmail.com</strong>
