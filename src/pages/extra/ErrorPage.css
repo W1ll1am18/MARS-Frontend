@@ -1,0 +1,24 @@
+.ep {
+    width: 100vw;
+    height: 100vh;
+    display: flex;      
+    flex-direction: column; 
+    align-items: center;  
+    justify-content: center;
+}
+
+.ep-error {
+    font-size: 1.5rem;     
+    color: var(--accent-red);
+}
+
+.ep img {
+    margin-bottom: 4rem;
+    width: 10rem;
+    height: 10rem;
+    filter: opacity(0.8)
+}
+
+.ep p {
+    color: var(--text-muted)
+}

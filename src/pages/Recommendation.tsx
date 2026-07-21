@@ -1,11 +1,13 @@
-import React from 'react'
-import NavigationBar from '../components/NavBar'
+import './Recommendation.css'
+import ComingSoonIcon from '../assets/comingSoon.svg'
 
 const Recommendation = () => {
     return (
         <>
-            <NavigationBar />
-            <div>Recommendation</div>
+            <div className='r'>
+                <img src={ComingSoonIcon}/>
+                <div className='r-message'>Coming soon in a future update!</div>
+            </div>
         </>
     )
 }

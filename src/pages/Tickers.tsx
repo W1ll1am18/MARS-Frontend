@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import NavigationBar from '../components/NavBar'
+// import NavigationBar from '../components/NavBar'
 import './Tickers.css'
 import { getTickers } from '../api/TickerService'
 import TickerCard from '../components/TickerCard'
@@ -31,7 +31,7 @@ export interface TickerFilters {
 const Tickers = () => {
   const [filters, setFilters] = useState<TickerFilters>({
     ticker: '',
-    type: '',
+    type: 'CS',
     market: 'STOCKS',
     exchange: '',
     cik: '',
@@ -83,8 +83,6 @@ const Tickers = () => {
 
   return (
     <>
-      <NavigationBar />
-
       <div className="tickers-layout">
 
         {/* LEFT PANEL */}

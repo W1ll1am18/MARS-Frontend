@@ -5,25 +5,35 @@ import Tickers from './pages/Tickers';
 import Overview from './pages/Overview';
 import Analyse from './pages/Analyse';
 import Recommendation from './pages/Recommendation';
-import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from './pages/extra/NotFoundPage';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
-import TickerTypes from './pages/TickerTypes';
+import Model from './pages/Model';
+import Glossary from './pages/Glossary';
+import { TickerLRUCache } from './components/TickerLRUCache';
+import { SavedTickers } from './components/SavedTickers';
+import Layout from './Layout';
+
+export const tickerLRUCache = new TickerLRUCache(10);
+export const savedTickers = new SavedTickers();
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Navigate to={'/MARS'} />} />
-        <Route path='/MARS' element={<Home />} />
-        <Route path='/tickers' element={<Tickers/>}/>
-        <Route path='/overview/:symbol?' element={<Overview/>}/>
-        <Route path='/types' element={<TickerTypes/>}/>
-        <Route path='/analyse/:id' element={<Analyse/>}/> {/*Variable path*/}
-        <Route path='/recommendation' element={<Recommendation/>}/>
-        <Route path='/profile' element={<Profile/>}/>
-        <Route path='/settings' element={<Settings/>}/>
-        <Route path="*" element={<NotFoundPage />} /> {/* 404 page */}
+        <Route element={<Layout/>}>
+          <Route path='/' element={<Navigate to={'/MARS'} />} />
+          <Route path='/MARS' element={<Home />} />
+          <Route path='/tickers' element={<Tickers/>}/>
+          <Route path='/overview/:symbol?' element={<Overview/>}/>
+          <Route path='/analyse/:id' element={<Analyse/>}/>
+          <Route path='/recommendation' element={<Recommendation/>}/>
+          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/model' element={<Model/>}/>
+          <Route path='/glossary' element={<Glossary/>}/>
+          <Route path='/settings' element={<Settings/>}/>
+          <Route path="*" element={<NotFoundPage />} /> {/* 404 page */}
+        </Route>
       </Routes>
     </>
   )

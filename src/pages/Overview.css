@@ -26,7 +26,7 @@
 }
 
 .ov-header-left h1 {
-  font-size: 22px;
+  font-size: 40px;
   font-weight: 500;
   color: var(--text-color);
   margin-bottom: 8px;
@@ -43,7 +43,7 @@
 .ov-badge {
   padding: 3px 10px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 20px;
   font-weight: 500;
   backdrop-filter: var(--glass-blur);
 }
@@ -61,7 +61,7 @@
 }
 
 .ov-muted {
-  font-size: 13px;
+  font-size: 20px;
   color: var(--text-muted);
 }
 
@@ -78,7 +78,7 @@
   color: var(--text-color);
   padding: 6px 16px;
   border-radius: var(--border-radius);
-  font-size: 13px;
+  font-size: 20px;
   cursor: pointer;
   text-decoration: none;
   backdrop-filter: var(--glass-blur);
@@ -124,14 +124,14 @@
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
 }
 
-.ov-stat-card:hover {
+/* .ov-stat-card:hover {
   border-color: var(--glass-border-hover);
   transform: translateY(-2px);
   box-shadow: var(--glass-shadow-hover);
-}
+} */
 
 .ov-stat-label {
-  font-size: 11px;
+  font-size: 25px;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.6px;
@@ -139,30 +139,30 @@
 }
 
 .ov-stat-value {
-  font-size: 22px;
+  font-size: 25px;
   font-weight: 500;
   color: var(--text-color);
 }
 
-.ov-stat-range { font-size: 15px; }
+.ov-stat-range { font-size: 25px; }
 
 .ov-stat-sub {
-  font-size: 12px;
+  font-size: 20px;
   color: var(--text-muted);
   margin-top: 4px;
 }
 
-/* ── Main grid (chart + company info) ────────── */
+/* ── Main grid (chart + predictions) ─────────── */
 
 .ov-main-grid {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr 380px;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
+  align-items: stretch;
 }
 
-.ov-chart-card,
-.ov-info-card {
+.ov-chart-card {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius);
@@ -171,10 +171,12 @@
   box-shadow: var(--glass-shadow);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 620px;
 }
 
-.ov-chart-card::before,
-.ov-info-card::before {
+.ov-chart-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -182,12 +184,6 @@
   right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-}
-
-.ov-chart-card {
-  display: flex;
-  flex-direction: column;
-  min-height: 280px;
 }
 
 .ov-chart-placeholder {
@@ -199,13 +195,108 @@
   border-radius: var(--border-radius);
   margin-top: 1rem;
   color: var(--text-dim);
-  font-size: 13px;
+  font-size: 20px;
+}
+
+.price-chart {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.price-chart-canvas {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+/* ── Chart controls — centered below the graph ── */
+
+.chart-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.chart-granularity-toggle {
+  display: flex;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 3px;
+  backdrop-filter: var(--glass-blur-strong);
+}
+
+.chart-granularity-toggle button {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 9px 19px;
+  font-size: 18px;
+  border-radius: calc(var(--border-radius) - 3px);
+  cursor: pointer;
+  transition: background var(--speed), color var(--speed);
+}
+
+.chart-granularity-toggle button:hover {
+  color: var(--text-color);
+}
+
+.chart-granularity-toggle button.active {
+  background: var(--accent-green-dim);
+  color: var(--accent-green);
+  box-shadow: 0 0 0 1px var(--accent-green-border) inset;
+}
+
+.chart-pager {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 4px 6px;
+  backdrop-filter: var(--glass-blur-strong);
+}
+
+.chart-pager button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-color);
+  padding: 10px 16px;
+  font-size: 18px;
+  border-radius: calc(var(--border-radius) - 3px);
+  cursor: pointer;
+  transition: background var(--speed), border-color var(--speed), opacity var(--speed);
+}
+
+.chart-pager button:hover:not(:disabled) {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+}
+
+.chart-pager button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.chart-current-period {
+  font-size: 18px;
+  color: var(--text-muted);
+  min-width: 130px;
+  text-align: center;
 }
 
 /* ── Section titles ──────────────────────────── */
 
 .ov-section-title {
-  font-size: 14px;
+  font-size: 25px;
   font-weight: 500;
   color: var(--text-color);
   margin-bottom: 12px;
@@ -225,13 +316,13 @@
 }
 
 .ov-section-sub {
-  font-size: 12px;
+  font-size: 20px;
   color: var(--text-dim);
   margin-top: -8px;
   margin-bottom: 4px;
 }
 
-/* ── Info rows (company info panel) ─────────── */
+/* ── Info rows (shared label/value styling) ──── */
 
 .ov-info-row {
   display: flex;
@@ -244,17 +335,214 @@
 .ov-info-row:last-child { border-bottom: none; }
 
 .ov-info-label {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-muted);
 }
 
 .ov-info-value {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-color);
   font-weight: 500;
   max-width: 60%;
   text-align: right;
   word-break: break-all;
+}
+
+/* ── Predictions panel ───────────────────────── */
+
+.ov-predictions-card {
+  background: linear-gradient(160deg, var(--glass-bg), rgba(255,255,255,0.02));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  backdrop-filter: var(--glass-blur-strong);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ov-predictions-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+}
+
+.ov-pred-status {
+  font-size: 18px;
+  color: var(--text-muted);
+  padding: 8px 0;
+}
+
+.ov-pred-headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--border-radius);
+  padding: 10px 12px;
+  margin-bottom: 1.25rem;
+}
+
+.ov-horizon-select {
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 7px 10px;
+  border-radius: calc(var(--border-radius) - 3px);
+  cursor: pointer;
+  backdrop-filter: var(--glass-blur);
+  transition: color var(--speed), border-color var(--speed);
+  max-width: 60%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%238a939e' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+.ov-horizon-select:hover {
+  color: var(--text-color);
+  border-color: var(--glass-border-hover);
+}
+
+.ov-horizon-select:focus {
+  outline: none;
+  border-color: var(--glass-bg);
+  box-shadow: 0 0 0 1px var(--glass-bg);
+}
+
+.ov-horizon-select option {
+  background-color: #353535;
+  color: var(--text-muted);
+  padding: 8px;
+}
+
+.ov-horizon-select option:disabled {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.ov-pred-badge {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.ov-pred-badge-pos {
+  background: var(--accent-green-dim);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green-border);
+}
+
+.ov-pred-badge-neg {
+  background: rgba(222, 44, 44, 0.12);
+  color: var(--accent-red);
+  border: 1px solid rgba(222, 44, 44, 0.35);
+}
+
+.ov-pred-badge-neutral {
+  background: var(--glass-bg);
+  color: var(--text-color);
+  border: 1px solid var(--glass-border);
+}
+
+.ov-prob-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ov-prob-bar-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.ov-prob-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.ov-prob-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+.ov-prob-fill-down { background: var(--accent-red); }
+.ov-prob-fill-timeout { background: var(--text-muted); }
+.ov-prob-fill-up { background: var(--accent-green); }
+
+.ov-pred-out {
+  margin-top: 1.25rem;
+  font-size: 16px;
+  color: #e83b3b;
+  background: rgba(232, 59, 59, 0.08);
+  border: 1px solid rgba(232, 59, 59, 0.3);
+  border-radius: var(--border-radius);
+  padding: 10px 12px;
+}
+
+.ov-pred-warning {
+  margin-top: 1.25rem;
+  font-size: 16px;
+  color: #e8b93b;
+  background: rgba(232, 185, 59, 0.08);
+  border: 1px solid rgba(232, 185, 59, 0.3);
+  border-radius: var(--border-radius);
+  padding: 10px 12px;
+}
+
+.ov-pred-validated {
+  margin-top: 1.25rem;
+  font-size: 16px;
+  color: var(--accent-green);
+  background: var(--accent-green-dim);
+  border: 1px solid var(--accent-green-border);
+  border-radius: var(--border-radius);
+  padding: 10px 12px;
+}
+
+.ov-pred-note {
+  margin-top: 0.75rem;
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.ov-model-link {
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 20px;
+  color: var(--text-color);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--speed);
+}
+
+.ov-model-link:hover {
+  color: var(--accent-green);
 }
 
 /* ── Metrics grid ────────────────────────────── */
@@ -308,12 +596,12 @@
 }
 
 .ov-metric-label {
-  font-size: 13px;
+  font-size: 20px;
   color: var(--text-muted);
 }
 
 .ov-metric-value {
-  font-size: 13px;
+  font-size: 20px;
   color: var(--text-color);
   font-weight: 500;
 }
@@ -323,11 +611,34 @@
 .pos { color: var(--accent-green); }
 .neg { color: var(--accent-red); }
 
-/* ── Bottom row (about + contact) ────────────── */
+/* ── Company info card ───────────────────────── */
+
+.ov-company-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  backdrop-filter: var(--glass-blur-strong);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.ov-company-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+}
+
+/* ── Bottom row (about + company info + contact) ── */
 
 .ov-bottom-row {
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: 1fr 320px 280px;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -356,7 +667,7 @@
 }
 
 .ov-desc-text {
-  font-size: 13px;
+  font-size: 20px;
   color: var(--text-muted);
   line-height: 1.7;
 }
@@ -367,7 +678,7 @@
   gap: 8px;
   padding: 8px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 13px;
+  font-size: 20px;
   color: var(--text-muted);
 }
 
@@ -384,11 +695,35 @@
   text-decoration: underline;
 }
 
+.ov-btn-icon {
+  width: 2rem;
+  height: 2rem;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.ov-save-btn.active {
+  background: var(--accent-green-dim);
+  border-color: var(--accent-green-border);
+  color: var(--accent-green);
+}
+
+.ov-contact-icon {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
 /* ── Responsive ──────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .ov-main-grid   { grid-template-columns: 1fr; }
+  .ov-chart-card  { height: 480px; }
+  .ov-bottom-row  { grid-template-columns: 1fr 1fr; }
+}
 
 @media (max-width: 900px) {
   .ov-stat-row     { grid-template-columns: repeat(2, 1fr); }
-  .ov-main-grid    { grid-template-columns: 1fr; }
   .ov-metrics-grid { grid-template-columns: 1fr; }
   .ov-bottom-row   { grid-template-columns: 1fr; }
 }
