@@ -5,7 +5,7 @@ import Tickers from './pages/Tickers';
 import Overview from './pages/Overview';
 import Analyse from './pages/Analyse';
 import Recommendation from './pages/Recommendation';
-import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from './pages/extra/NotFoundPage';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import Model from './pages/Model';

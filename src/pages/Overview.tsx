@@ -7,6 +7,8 @@ import PriceChart, { type OHLCVBar } from '../components/PriceChart'
 import { getPrediction } from '../api/MarsService'
 import { tickerLRUCache } from '../App'
 import { savedTickers } from '../App'
+import ErrorPage from './extra/ErrorPage'
+import LoadingPage from './extra/LoadingPage'
 import PinIcon from '../assets/pin.svg'
 import PinnedIcon from '../assets/pinned.svg'
 // import LinkIcon from '../assets/link.svg'
@@ -324,9 +326,9 @@ const TickerOverview = () => {
     </div>
   )
 
-  if (!symbol) return <><div className="no-symbol">No ticker to analyse. Please select one</div></>
-  if (loading) return <><div className="ov-loading">Loading...</div></>
-  if (error) return <><div className="ov-error">{error}</div></>
+  if (!symbol) return <><ErrorPage error='No ticker to analyse. Please select one in the navigation or search bar'/></>
+  if (loading) return <><LoadingPage/></>
+  if (error) return <><ErrorPage error={error}/></>
   if (!data) return null
   if (data.type && data.type !== 'CS' && data.type !== 'ADRC'
     && data.type !== 'ADRP' && data.type !== 'WARRANT'
