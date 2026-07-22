@@ -14,6 +14,7 @@ import PinnedIcon from '../assets/pinned.svg'
 // import LinkIcon from '../assets/link.svg'
 import PhoneIcon from '../assets/phone.svg'
 import WebsiteLinkIcon from '../assets/websiteLink.svg'
+import RedirectIcon from '../assets/redirect.svg'
 
 interface TickerOverviewData {
   // ── Core ticker fields (MASSIVE) ──────────────────
@@ -127,6 +128,9 @@ const growthClass = (n?: number | null) =>
 
 const fmtProb = (n?: number | null) =>
   n != null ? `${(n * 100).toFixed(1)}%` : '—'
+
+const barWidth = (n?: number | null, cap = 100) =>
+  n == null ? 0 : Math.min(Math.abs(n), cap)
 
 const predictedClassLabel = (predictedClass?: number | null): { text: string; cls: string } => {
   switch (predictedClass) {
@@ -326,9 +330,9 @@ const TickerOverview = () => {
     </div>
   )
 
-  if (!symbol) return <><ErrorPage error='No ticker to analyse. Please select one in the navigation or search bar'/></>
-  if (loading) return <><LoadingPage/></>
-  if (error) return <><ErrorPage error={error}/></>
+  if (!symbol) return <><ErrorPage error='No ticker to analyse. Please select one in the navigation or search bar' /></>
+  if (loading) return <><LoadingPage /></>
+  if (error) return <><ErrorPage error={error} /></>
   if (!data) return null
   if (data.type && data.type !== 'CS' && data.type !== 'ADRC'
     && data.type !== 'ADRP' && data.type !== 'WARRANT'
@@ -410,7 +414,22 @@ const TickerOverview = () => {
           </div>
         </div>
 
-        {/* ── Top stat cards ───────────────────────────── */}
+        {/* ── Chart + Predictions ───────────────────────── */}
+        <div className="ov-main-grid">
+          <div className="ov-chart-card">
+            <div className="ov-section-title">Price chart</div>
+            <div className="ov-section-sub">OHLCV daily bars</div>
+            {barsLoading
+              ? <div className="ov-chart-placeholder">Loading chart...</div>
+              : <PriceChart data={bars} />
+            }
+          </div>
+          {renderPredictionsPanel()}
+        </div>
+
+        <div className="ov-divider" />
+
+        {/*Top stat cards ───────────────────────────── */}
         <div className="ov-stat-row">
           <div className="ov-stat-card">
             <div className="ov-stat-label">P/E Ratio (TTM)</div>
@@ -438,19 +457,6 @@ const TickerOverview = () => {
               {fmtPct(data.epsGrowthYoy)} YoY
             </div>
           </div>
-        </div>
-
-        {/* ── Chart + Predictions ───────────────────────── */}
-        <div className="ov-main-grid">
-          <div className="ov-chart-card">
-            <div className="ov-section-title">Price chart</div>
-            <div className="ov-section-sub">OHLCV daily bars</div>
-            {barsLoading
-              ? <div className="ov-chart-placeholder">Loading chart...</div>
-              : <PriceChart data={bars} />
-            }
-          </div>
-          {renderPredictionsPanel()}
         </div>
 
         {/* ── Metrics grid ─────────────────────────────── */}
@@ -487,10 +493,16 @@ const TickerOverview = () => {
               ['Payout Ratio', data.payoutRatio],
             ] as [string, number | null | undefined][]).map(([label, value]) => (
               <div className="ov-metric-row" key={label}>
-                <span className="ov-metric-label">{label}</span>
-                <span className="ov-metric-value">
-                  {value != null ? `${fmt(value)}%` : '—'}
-                </span>
+                <div
+                  className={`ov-metric-fill ${growthClass(value)}`}
+                  style={{ width: `${barWidth(value)}%` }}
+                />
+                <div className="ov-metric-row-content">
+                  <span className="ov-metric-label">{label}</span>
+                  <span className="ov-metric-value">
+                    {value != null ? `${fmt(value)}%` : '—'}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
@@ -520,15 +532,25 @@ const TickerOverview = () => {
               ['EPS growth (5Y)', data.epsGrowth5y],
             ] as [string, number | null | undefined][]).map(([label, value]) => (
               <div className="ov-metric-row" key={label}>
-                <span className="ov-metric-label">{label}</span>
-                <span className={`ov-metric-value ${growthClass(value)}`}>
-                  {fmtPct(value)}
-                </span>
+                <div
+                  className={`ov-metric-fill ${growthClass(value)}`}
+                  style={{ width: `${barWidth(value, 50)}%` }}
+                />
+                <div className="ov-metric-row-content">
+                  <span className="ov-metric-label">{label}</span>
+                  <span className={`ov-metric-value ${growthClass(value)}`}>
+                    {fmtPct(value)}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
 
         </div>
+
+        <Link to="/glossary" className="ov-link">See glossary →</Link>
+        
+        <div className="ov-divider" />
 
         {/* ── About + Company info + Contact ────────────── */}
         <div className="ov-bottom-row">

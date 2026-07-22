@@ -24,7 +24,7 @@ const Model = () => {
 
         <div className="model-section">
           <p>
-            Predicting the stock market with any real confidence is one of the hardest open problems in machine learning, markets are noisy, mostly efficient, and full of information nobody can see coming. This model doesn't try to beat that. Instead, it tries to find a small, honest edge and say clearly how small that edge is.
+            Predicting the stock market with any real confidence is one of the hardest open problems in machine learning, markets are noisy, reactive, and full of information nobody can see coming. This model doesn't try to beat that. Instead, it tries to find a small, honest edge and say clearly how small that edge is.
           </p>
         </div>
 
@@ -46,10 +46,12 @@ const Model = () => {
         <div className="model-section">
           <div className="model-section-title">Why triple-barrier?</div>
           <p>
-            Before landing on this approach, I tried predicting next-day price direction directly, using a range of different inputs, sentiment analysis with FinBERT, 1–50+ tickers' worth of price history, and insider-trading sentiment. Between limited compute and a realistically sized dataset (5 years of daily data from the MASSIVE API), these attempts produced predictions barely better than random guessing. Even with far more data and computing power, next-day price direction is one of the most stubbornly difficult targets in the entire field, because daily returns are dominated by noise.
+            Before landing on this approach, I tried predicting next-day price direction directly, using a range of different inputs, sentiment analysis with FinBERT, 1–50+ tickers' worth of price history, and insider-trading sentiment. Between limited compute and a realistically sized dataset (5 years of daily data from the MASSIVE API), 
+            these attempts produced predictions barely better than random guessing. Even with far more data and computing power, next-day price direction is one of the most stubbornly difficult challenges in the entire field, because daily returns are dominated by noise.
           </p>
           <p>
-            Triple-barrier reframes the question in a way that cuts through some of that noise. Instead of "will tomorrow's close be higher or lower," it asks: "within the next 10 days, is this stock more likely to make a meaningful move up, a meaningful move down, or go nowhere?" That's a coarser, more forgiving question and it turned out to produce a real, if modest, signal where the finer-grained version produced none.
+            Triple-barrier reframes the question in a way that reduces some of that noise. Instead of "will tomorrow's close be higher or lower," it asks: "within the next 10 days, is this stock more likely to make a meaningful move up, a meaningful move down, or go nowhere?"
+            This is a broader, forgiving perspective and turned out to produce a real, if modest, signal where the finer-grained version produced virtually none.
           </p>
         </div>
 
@@ -144,7 +146,8 @@ const Model = () => {
           </p>
 
           <p className="important">
-            These threshold values were tuned specifically for this dataset and this scope which is exactly why the app shows a scope warning when a ticker falls outside the sectors this model was trained and validated on. A threshold tuned for tech/growth stocks isn't guaranteed to behave the same way elsewhere.
+            These threshold values were tuned specifically for this dataset and this scope which is exactly why the app shows a scope warning when a ticker falls
+            outside internally validated tickers this model was trained and validated on. A threshold tuned for AAPL isn't guaranteed to behave the same way elsewhere.
           </p>
         </div>
 
@@ -159,7 +162,7 @@ const Model = () => {
             The model scores an <strong>MCC of 0.18</strong> and a <strong>Macro F1 of 0.42</strong>.
           </p>
           <p>
-            In plain terms: the model is clearly picking up something meaningfully better than a coin flip but it's a weak signal, not a reliable forecast. Given that predicting stock direction with any real edge is one of the more famously difficult problems in quantitative finance, going from "no measurable signal at all" (the result of earlier next-day prediction attempts) to "weak but real signal" is a genuine improvement however just not one that should be mistaken for a trading strategy on its own.
+            In plain terms: the model is clearly picking up something meaningfully better than a coin flip but it's a weak signal. Given that predicting stock direction with any real edge is one of the more famously difficult problems in quantitative finance, going from "no measurable signal at all" (the result of earlier next-day prediction attempts) to "weak but real signal" is a genuine improvement however just not one that should be mistaken for a trading strategy on its own.
           </p>
           <p>
             In the future I do plan on implementing more models across a larger set of industries and horizons. Thanks for reading!

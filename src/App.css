@@ -5,13 +5,15 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(20, 20, 20);
+  background-color: var(--background);
   color: white;
   font-family: 'Roboto', sans-serif;
 }
 
 :root {
+  --background: rgb(20, 20, 20);
   --link: rgba(64, 173, 209, 0.8);
+  --link-border: rgba(61, 111, 129, 0.8);
   
   /* Glass surfaces */
   width: 100%;

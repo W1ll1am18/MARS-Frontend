@@ -253,6 +253,7 @@
 }
 
 .glossary-references a:hover {
+  color: var(--link);
   text-decoration: underline;
 }
 
@@ -267,7 +268,7 @@
 .glossary-source a {
   color: var(--link);
   text-decoration: none;
-  border-bottom: 1px solid var(--accent-green-border);
+  border-bottom: 1px solid var(--link-border);
   transition: opacity var(--speed);
 }
 

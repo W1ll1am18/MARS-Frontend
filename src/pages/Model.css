@@ -135,11 +135,11 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 9px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-green);
+  top: 12px;
+  width: 10px;
+  height: 3px;
+  border-radius: 0%;
+  background: var(--text-color);
   box-shadow: 0 0 5px var(--accent-green-dim);
 }
 
@@ -257,7 +257,7 @@
 .model-ref-link a {
   color: var(--link);
   text-decoration: none;
-  border-bottom: 1px solid var(--accent-green-border);
+  border-bottom: 1px solid var(--link-border);
   transition: opacity var(--speed);
 }
 

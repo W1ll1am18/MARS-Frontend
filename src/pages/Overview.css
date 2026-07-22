@@ -70,6 +70,7 @@
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: auto;
 }
 
 .ov-btn {
@@ -97,24 +98,24 @@
 .ov-stat-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  /* gap: 12px; */
   margin-bottom: 1.5rem;
 }
 
 .ov-stat-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--border-radius);
+  background: var(--background);
+  /* border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius); */
   padding: 1rem;
-  backdrop-filter: var(--glass-blur-strong);
-  box-shadow: var(--glass-shadow);
-  transition: border-color var(--speed), transform 0.2s, box-shadow 0.2s;
+  /* backdrop-filter: var(--glass-blur-strong); */
+  /* box-shadow: var(--glass-shadow);
+  transition: border-color var(--speed), transform 0.2s, box-shadow 0.2s; */
   position: relative;
   overflow: hidden;
 }
 
 /* Subtle top-edge highlight — core of the glass look */
-.ov-stat-card::before {
+/* .ov-stat-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -122,7 +123,7 @@
   right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-}
+} */
 
 /* .ov-stat-card:hover {
   border-color: var(--glass-border-hover);
@@ -226,10 +227,10 @@
 
 .chart-granularity-toggle {
   display: flex;
-  background: var(--glass-bg);
+  background: var(--glass-blur-strong);
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius);
-  padding: 3px;
+  /* padding: 3px; */
   backdrop-filter: var(--glass-blur-strong);
 }
 
@@ -258,10 +259,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--glass-bg);
+  background: var(--glass-blur-strong);
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius);
-  padding: 4px 6px;
+  /* padding: 4px 6px; */
   backdrop-filter: var(--glass-blur-strong);
 }
 
@@ -542,7 +543,7 @@
 }
 
 .ov-model-link:hover {
-  color: var(--accent-green);
+  color: var(--link);
 }
 
 /* ── Metrics grid ────────────────────────────── */
@@ -583,6 +584,9 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: background 0.5s, margin 0.5s, padding 0.5s;
   border-radius: 0;
+
+  position: relative;
+  overflow: hidden;
 }
 
 .ov-metric-row:last-child { border-bottom: none; }
@@ -606,6 +610,46 @@
   font-weight: 500;
 }
 
+.ov-metric-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.ov-metric-row:hover .ov-metric-fill {
+  opacity: 0.50;
+}
+
+.ov-metric-row-content {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ov-metric-fill.pos { background: var(--accent-green-dim); }
+.ov-metric-fill.neg { background: var(--accent-red-dim); }
+
+.ov-link {
+  display: inline-block;
+  margin-top: auto;
+  font-size: 20px;
+  color: var(--text-color);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--speed);
+}
+
+.ov-link:hover {
+  color: var(--link);
+}
+
 /* ── Positive / negative ─────────────────────── */
 
 .pos { color: var(--accent-green); }
@@ -614,17 +658,17 @@
 /* ── Company info card ───────────────────────── */
 
 .ov-company-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--border-radius);
+  background: var(--background);
+  /* border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius); */
   padding: 1.25rem;
-  backdrop-filter: var(--glass-blur-strong);
-  box-shadow: var(--glass-shadow);
+  /* backdrop-filter: var(--glass-blur-strong);
+  box-shadow: var(--glass-shadow); */
   position: relative;
   overflow: hidden;
 }
 
-.ov-company-card::before {
+/* .ov-company-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -632,7 +676,7 @@
   right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-}
+} */
 
 /* ── Bottom row (about + company info + contact) ── */
 
@@ -645,17 +689,17 @@
 
 .ov-desc-card,
 .ov-contact-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--border-radius);
+  background: var(--background);
+  /* border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius); */
   padding: 1.25rem;
-  backdrop-filter: var(--glass-blur-strong);
-  box-shadow: var(--glass-shadow);
+  /* backdrop-filter: var(--glass-blur-strong);
+  box-shadow: var(--glass-shadow); */
   position: relative;
   overflow: hidden;
 }
 
-.ov-desc-card::before,
+/* .ov-desc-card::before,
 .ov-contact-card::before {
   content: '';
   position: absolute;
@@ -664,7 +708,7 @@
   right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-}
+} */
 
 .ov-desc-text {
   font-size: 20px;
@@ -685,7 +729,7 @@
 .ov-contact-row:last-child { border-bottom: none; }
 
 .ov-contact-row a {
-  color: var(--accent-green);
+  color: var(--link);
   text-decoration: none;
   transition: opacity var(--speed);
 }
@@ -712,6 +756,14 @@
   width: 2rem;
   height: 2rem;
   flex-shrink: 0;
+}
+
+
+
+.ov-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+  margin: 1.5rem 0;
 }
 
 /* ── Responsive ──────────────────────────────── */
