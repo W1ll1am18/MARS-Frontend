@@ -91,13 +91,13 @@ const NavigationBar = () => {
           </div>
 
           <div className='nav-bottom'>
-            <Link to="/model"><NavItem propsIcon={<ModelIcon/>} propsName={"Model"} /></Link>
-            <Link to="/glossary"><NavItem propsIcon={<GlossaryIcon />} propsName={"Glossary"} /></Link>
+            <Link to="/model"><NavItemBottom propsIcon={<ModelIcon/>} propsName={"Model"} /></Link>
+            <Link to="/glossary"><NavItemBottom propsIcon={<GlossaryIcon />} propsName={"Glossary"} /></Link>
             <div onClick={triggerDevMessage}>
-              <NavItem propsIcon={<DevIcon />} propsName={"Developer Note"} />
+              <NavItemBottom propsIcon={<DevIcon />} propsName={"Developer Note"} />
             </div>
             <div onClick={() => navigate(-1)}>
-              <NavItem propsIcon={<BackIcon />} propsName={"Back"} className="back-item" />
+              <NavItemBottom propsIcon={<BackIcon />} propsName={"Back"} className="back-item" />
             </div>
           </div>
         </div>
@@ -129,6 +129,24 @@ function NavItem({ propsIcon, propsName, propsDropIcon, children, className, isO
       onMouseEnter={onOpen}
     >
       <div className='section' onClick={onToggle}>
+        <span className='nav-icon'>{propsIcon}</span>
+        <span className='nav-label'>{propsName}</span>
+        {propsDropIcon && (
+          <span className='nav-drop'>{propsDropIcon}</span>
+        )}
+      </div>
+      {children && (<ul className='dropdown-list'>{children}</ul>)}
+    </div>
+  )
+}
+
+function NavItemBottom({ propsIcon, propsName, propsDropIcon, children, className, isOpen, onOpen, onToggle }: NavItemProps) {
+  return (
+    <div
+      className={`nav-item ${isOpen ? 'open' : ''} ${className || ''}`}
+      onMouseEnter={onOpen}
+    >
+      <div className='section-bottom' onClick={onToggle}>
         <span className='nav-icon'>{propsIcon}</span>
         <span className='nav-label'>{propsName}</span>
         {propsDropIcon && (

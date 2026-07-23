@@ -2,7 +2,7 @@ import axios from "axios";
 import type { TickerFilters } from "../pages/Tickers";
 
 const API_URL_MASSIVE = 'http://localhost:8080/stocks';
-const API_URL_FINNHUB = 'http://localhost:8080/metrics';
+// const API_URL_FINNHUB = 'http://localhost:8080/metrics';
 
 export async function getTickers(filters: TickerFilters) {
     const cleanedParams = Object.fromEntries(

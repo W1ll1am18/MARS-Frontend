@@ -1,4 +1,3 @@
-import React from 'react'
 import ErrorIcon from '../../assets/error.svg'
 import './ErrorPage.css'
 

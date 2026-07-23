@@ -4,12 +4,14 @@ import './Tickers.css'
 import { getTickers } from '../api/TickerService'
 import TickerCard from '../components/TickerCard'
 
-const MARKET_OPTIONS = ['', 'STOCKS', 'CRYPTO', 'FX', 'OTC', 'INDICES']
-const TYPE_OPTIONS = [
-  '', 'CS', 'ADRC', 'ADRP', 'ADRR', 'UNIT', 'RIGHT', 'PFD', 'FUND', 'SP',
-  'WARRANT', 'INDEX', 'ETF', 'ETN', 'OS', 'GDR', 'OTHER', 'NYRS', 'AGEN',
-  'EQLK', 'BOND', 'ADRW', 'BASKET', 'LT',
-]
+// const MARKET_OPTIONS = ['', 'STOCKS', 'CRYPTO', 'FX', 'OTC', 'INDICES']
+const MARKET_OPTIONS = ['', 'STOCKS']
+// const TYPE_OPTIONS = [
+//   '', 'CS', 'ADRC', 'ADRP', 'ADRR', 'UNIT', 'RIGHT', 'PFD', 'FUND', 'SP',
+//   'WARRANT', 'INDEX', 'ETF', 'ETN', 'OS', 'GDR', 'OTHER', 'NYRS', 'AGEN',
+//   'EQLK', 'BOND', 'ADRW', 'BASKET', 'LT',
+// ]
+const TYPE_OPTIONS = ['', 'CS', 'ETF']
 const SORT_OPTIONS = ['TICKER', 'NAME', 'MARKET', 'LOCALE', 'PRIMARY_EXCHANGE', 'TYPE', 'CURRENCY_SYMBOL', 'LAST_UPDATED_UTC']
 const ORDER_OPTIONS = ['ASC', 'DESC']
 

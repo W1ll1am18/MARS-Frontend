@@ -4,6 +4,7 @@
     height: 100vh;
     width: 100vw;
     z-index: 0;
+    overflow: hidden;
 }
 
 canvas {
@@ -13,7 +14,7 @@ canvas {
     z-index: 1;
 }
 
-.title, .description {
+.title, .description, .abbrev {
     pointer-events: none;
     position: absolute;
     width: 100%;
@@ -22,20 +23,27 @@ canvas {
     z-index: 2;
     margin: 0;
     padding: 0;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
     user-select: none;
 }
 
 .title {
+    font-weight: bold;
     color: white;
-    font-size: 5rem;
-    top: 20%;
+    font-size: 15rem;
+    top: 30%;
+}
+
+.abbrev {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 2.5rem;
+    top: 53%;
 }
 
 .description {
-    color: white;
-    font-size: 1rem;
-    top: 55%;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 2rem;
+    top: 60%;
 }
 
 video {
@@ -51,4 +59,32 @@ video {
 .screen-layout {
   display: flex;
   height: 100vh;
+}
+
+.starfield {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    border-radius: 50%;
+    animation: star-twinkle ease-in-out infinite;
+}
+
+.star-up {
+    background: #44de2c;
+    box-shadow: 0 0 4px #44de2c;
+}
+
+.star-down {
+    background: #de2c2c;
+    box-shadow: 0 0 4px #de2c2c;
+}
+
+@keyframes star-twinkle {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.85; }
 }

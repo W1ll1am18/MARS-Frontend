@@ -10,6 +10,7 @@
     --speed: 500ms;
     
     --hover-gradient: linear-gradient(120deg, #3f8a5a 0%, #379e65 100%);    
+    --hover-gradient-bottom: linear-gradient(120deg, rgba(59, 122, 143, 0.8) 0%, rgba(64, 173, 209, 0.8) 100%); 
     --hover-gradient-settings: linear-gradient(120deg, #5c5c5c 0%, #838383 100%);
     --hover-gradient-accent: linear-gradient(120deg, #6b3f3f 0%, #9f4747 100%);
 }
@@ -43,7 +44,8 @@ a {
     left: 0;
     z-index: 10;
     overflow-x: hidden;
-    background: var(--bg);
+    background: linear-gradient(180deg, var(--bg), rgba(21, 21, 21, 0.9));
+    backdrop-filter: blur(30px);
     color: var(--text-color);
     width: 20rem;
     height: 100vh;
@@ -78,7 +80,7 @@ a {
     transform: translateY(-30%);
     z-index: -1;
     cursor: pointer;
-    background: var(--bg);
+    background-color: transparent !important;
     transition: opacity 0.5s ease;
     border-radius: 0 0.5rem 0.5rem 0;
     padding: 0.5rem;
@@ -136,6 +138,37 @@ a {
 }
 
 .section:hover .nav-icon {
+    animation: bounce 0.4s ease;
+}
+
+.section-bottom {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    gap: 0px 10px;
+    transition: background 0.4s ease;
+}
+
+.section-bottom span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+}
+
+.section-bottom svg {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.section-bottom:hover {
+    background: var(--hover-gradient-bottom);
+}
+
+.section-bottom:hover .nav-icon {
     animation: bounce 0.4s ease;
 }
 

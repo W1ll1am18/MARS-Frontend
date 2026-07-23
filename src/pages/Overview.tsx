@@ -11,10 +11,8 @@ import ErrorPage from './extra/ErrorPage'
 import LoadingPage from './extra/LoadingPage'
 import PinIcon from '../assets/pin.svg'
 import PinnedIcon from '../assets/pinned.svg'
-// import LinkIcon from '../assets/link.svg'
 import PhoneIcon from '../assets/phone.svg'
 import WebsiteLinkIcon from '../assets/websiteLink.svg'
-import RedirectIcon from '../assets/redirect.svg'
 
 interface TickerOverviewData {
   // ── Core ticker fields (MASSIVE) ──────────────────
